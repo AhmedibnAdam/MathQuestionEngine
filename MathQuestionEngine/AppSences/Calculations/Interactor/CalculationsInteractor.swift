@@ -13,7 +13,7 @@ import UIKit
 protocol ICalculationsInteractor: class {
     var parameters: [String: String]? { get set }
     
-    func evaluateExpression(operators: [String], operands: [String]) -> Float
+    func evaluateExpression(operators: [String], operands: [String], time: Double) -> Float
     func getOperatorPrecedence(paramOperator: String) -> Int
 }
 
@@ -44,7 +44,7 @@ class CalculationsInteractor: ICalculationsInteractor {
         }
     }
     
-    func evaluateExpression(operators: [String], operands: [String]) -> Float {
+    func evaluateExpression(operators: [String], operands: [String], time: Double) -> Float {
         var firstOperand : Float
         var secondOperand : Float
         var result : Float
@@ -55,6 +55,7 @@ class CalculationsInteractor: ICalculationsInteractor {
         checkPrecedenceOrder(tempOperatorsArray, &operatorIndexInArray)
         firstOperand = Float(tempOperandsArray[operatorIndexInArray])!
         secondOperand = Float(tempOperandsArray[operatorIndexInArray + 1])!
+        
         result = (worker?.evaluateStatement(selectedOperator: currentOperator, firstOperand: firstOperand, secondOperand: secondOperand))!
         if (result.isInfinite || result.isNaN) {
             return result
@@ -65,12 +66,13 @@ class CalculationsInteractor: ICalculationsInteractor {
         }
         
         if (tempOperandsArray.count >= 2) {
-            result = evaluateExpression(operators: tempOperatorsArray, operands: tempOperandsArray)
+            result = evaluateExpression(operators: tempOperatorsArray, operands: tempOperandsArray, time: time)
         }
         return result
     }
     
     func checkPrecedenceOrder(_ tempOperatorsArray: [String], _ operatorIndexInArray: inout Int?) {
+        
         currentOperator =  worker?.checkPrecedenceOrder(tempOperatorsArray, &operatorIndexInArray)
     }
 }

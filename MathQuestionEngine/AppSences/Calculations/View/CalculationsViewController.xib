@@ -30,7 +30,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tOW-Wh-8P3">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tOW-Wh-8P3">
                     <rect key="frame" x="30" y="20" width="315" height="170"/>
                     <subviews>
                         <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Fk-hb-ay0">
@@ -60,9 +60,6 @@
                             </connections>
                         </tableView>
                     </subviews>
-                    <constraints>
-                        <constraint firstItem="jU3-zl-G2M" firstAttribute="width" secondItem="6Fk-hb-ay0" secondAttribute="width" multiplier="2" id="Ueu-wQ-g5q"/>
-                    </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Vuo-ea-gLq">
                     <rect key="frame" x="30" y="200" width="315" height="447"/>

@@ -7,16 +7,126 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9759B5DB-E108-4379-A1D4-BB85E6A2B04E"
+            uuid = "41F58D13-E7BD-4229-A568-EA14B7091958"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathQuestionEngine/AppSences/Calculations/Interactor/CalculationsInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "checkPrecedenceOrder(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A00596DE-3E71-4262-9785-427951046B35"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathQuestionEngine/AppSences/Calculations/worker/CalculationsWorker.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "evaluateStatement(selectedOperator:firstOperand:secondOperand:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A00596DE-3E71-4262-9785-427951046B35 - ff02d23dd82a6c74"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MathQuestionEngine.CalculationsWorker.evaluateStatement(selectedOperator: Swift.Int, firstOperand: Swift.Float, secondOperand: Swift.Float) -&gt; Swift.Float"
+                  moduleName = "MathQuestionEngine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Adam/MathQuestionEngine/MathQuestionEngine/AppSences/Calculations/worker/CalculationsWorker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "165">
+               </Location>
+               <Location
+                  uuid = "A00596DE-3E71-4262-9785-427951046B35 - ff02d23dd82a6c74"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MathQuestionEngine.CalculationsWorker.evaluateStatement(selectedOperator: Swift.Int, firstOperand: Swift.Float, secondOperand: Swift.Float) -&gt; Swift.Float"
+                  moduleName = "MathQuestionEngine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Adam/MathQuestionEngine/MathQuestionEngine/AppSences/Calculations/worker/CalculationsWorker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "194">
+               </Location>
+               <Location
+                  uuid = "A00596DE-3E71-4262-9785-427951046B35 - ff02d23dd82a6c74"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MathQuestionEngine.CalculationsWorker.evaluateStatement(selectedOperator: Swift.Int, firstOperand: Swift.Float, secondOperand: Swift.Float) -&gt; Swift.Float"
+                  moduleName = "MathQuestionEngine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Adam/MathQuestionEngine/MathQuestionEngine/AppSences/Calculations/worker/CalculationsWorker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "232">
+               </Location>
+               <Location
+                  uuid = "A00596DE-3E71-4262-9785-427951046B35 - ff02d23dd82a6c74"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MathQuestionEngine.CalculationsWorker.evaluateStatement(selectedOperator: Swift.Int, firstOperand: Swift.Float, secondOperand: Swift.Float) -&gt; Swift.Float"
+                  moduleName = "MathQuestionEngine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Adam/MathQuestionEngine/MathQuestionEngine/AppSences/Calculations/worker/CalculationsWorker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "270">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7CAE2255-E7B7-4D7B-A48F-381AABD9E1A5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathQuestionEngine/AppSences/Calculations/Interactor/CalculationsInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "evaluateExpression(operators:operands:time:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F6D24CBF-4B21-489E-9F7E-2EF47CBA2BDB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MathQuestionEngine/AppSences/Calculations/View/CalculationsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "onOperatorClicked(_:)"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "calculateOperation(operands:operators:fullEquation:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

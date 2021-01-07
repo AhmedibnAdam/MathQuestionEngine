@@ -49,7 +49,6 @@ class CalculationsViewController: UIViewController {
         registerTableCell()
     }
     
-    
     //MARK:- Actions
     @IBAction func onNumberClicked(_ sender: UIButton) {
         
@@ -79,7 +78,6 @@ class CalculationsViewController: UIViewController {
         wasLastButtonClickedAnOperator = false
     }
     
-    
     @IBAction func onOperatorClicked(_ sender: UIButton) {
         if (wasLastButtonClickedAnOperator) {
             if (sender.currentTitle! == "-") {
@@ -102,19 +100,7 @@ class CalculationsViewController: UIViewController {
                     let isCurrentOperatorOfHigherPrecedence : Bool =
                         ((interactor?.getOperatorPrecedence(paramOperator: sender.currentTitle!))! > (interactor?.getOperatorPrecedence(paramOperator: operators.last!))!)
                     if (!isCurrentOperatorOfHigherPrecedence) {
-                        guard let result : Float = interactor?.evaluateExpression(operators: operators, operands: operands) else {
-                            return
-                        }
-                        
-                        if (result.isInfinite || result.isNaN) {
-                            handleError(result: result)
-                        } else {
-                            if (floor(result) == result) {
-                                resultDisplayField.text = String(Int(result))
-                            } else {
-                                resultDisplayField.text = String(result)
-                            }
-                        }
+                        caluclatNotHigherPrec(operands: operands , operators: operators, fullEquation: fullEquation)
                     }
                 }
                 operators.append(sender.currentTitle!)
@@ -125,50 +111,71 @@ class CalculationsViewController: UIViewController {
         }
     }
     
+    func caluclatNotHigherPrec(operands: [String] , operators:[String] , fullEquation: String){
+        
+        var operators = operators
+        guard let result : Float = interactor?.evaluateExpression(operators: operators, operands: operands, time: selectedTime) else {
+            return
+        }
+        
+        if (result.isInfinite || result.isNaN) {
+            handleError(result: result)
+        } else {
+            if (floor(result) == result) {
+                //                resultDisplayField.text = String(Int(result))
+            } else {
+                //                resultDisplayField.text = String(result)
+            }
+        }
+    }
+    
+    
     @IBAction func onEqualsButtonClicked(_ sender: UIButton) {
         if (operators.isEmpty) {
             return
         }
         operands.append(currentOperand)
+        
         fullEquation.append(currentOperand)
         equations.append(fullEquation)
         fullEquation = ""
+        calculateOperation(operands: operands , operators: operators, fullEquation: fullEquation)
+        resetData()
         reloadTable()
-        
+    }
+    
+    
+    fileprivate func calculateOperation(operands: [String] , operators:[String] , fullEquation: String) {
         //MARK:- background scheduled tasks.
-        
-        /*
-         *************************************
-         *************************************
-         */
-        
-        guard let result : Float = interactor?.evaluateExpression(operators: operators, operands: operands) else {
-            return
-        }
-        if (result.isInfinite || result.isNaN) {
-            handleError(result: result)
-        } else {
-            if (floor(result) == result) {
-                resultDisplayField.text = String(Int(result))
-            } else {
-                resultDisplayField.text = String(result)
+        var operators = operators
+        let when = DispatchTime.now() + selectedTime
+        DispatchQueue.main.asyncAfter(deadline: when) { [self] in
+            if let result : Float = interactor?.evaluateExpression(operators: operators, operands: operands, time: selectedTime)  {
+                
+                if (result.isInfinite || result.isNaN) {
+                    handleError(result: result)
+                } else {
+                    if (floor(result) == result) {
+                        resultDisplayField.text = String(Int(result))
+                    } else {
+                        resultDisplayField.text = String(result)
+                    }
+                    self.operands.removeAll()
+                    self.operands.append(String(result))
+                    results.append(String(result))
+                    reloadTable()
+                    if (operators.count > 1) {
+                        operators.removeSubrange(Range(0...(operators.count - 2)))
+                    }
+                }
+                DispatchQueue.main.async { [self] in
+                    reloadTable()
+                }
+                
             }
-            operands.removeAll()
-            operands.append(String(result))
-            results.append(String(result))
-            reloadTable()
-            if (operators.count > 1) {
-                operators.removeSubrange(Range(0...(operators.count - 2)))
-            }
+            wasLastButtonClickedAnOperator = true
+            resetData ()
         }
-        DispatchQueue.main.async { [self] in
-            reloadTable()
-        }
-        wasLastButtonClickedAnOperator = true
-        resetData ()
-        
-        
-        /*  ***************************************************** */
     }
     
     @IBAction func onResetButtonClicked(_ sender: UIButton) {
@@ -211,21 +218,3 @@ extension CalculationsViewController: ICalculationsViewController {
         print(result)
     }
 }
-
-extension CalculationsViewController {
-    func registerBackgroundTask() {
-        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
-            self?.endBackgroundTask()
-        }
-        assert(backgroundTask != .invalid)
-    }
-    
-    func endBackgroundTask() {
-        print("Background task ended.")
-        UIApplication.shared.endBackgroundTask(backgroundTask)
-        backgroundTask = .invalid
-    }
-    
-}
-
-

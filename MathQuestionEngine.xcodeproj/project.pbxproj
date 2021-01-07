@@ -126,12 +126,11 @@
 			isa = PBXGroup;
 			children = (
 				661387E525A212C900A78547 /* Configure */,
+				666BB8B625A72B2300C745EC /* Routing */,
+				666BB8B725A72B7900C745EC /* Common */,
 				661387F125A212F900A78547 /* AppSences */,
 				661387F025A212EF00A78547 /* Assets */,
 				661387C025A2126E00A78547 /* Info.plist */,
-				6613884025A2178D00A78547 /* CommonDesignable.swift */,
-				6613884525A2185000A78547 /* AppRoute.swift */,
-				6613884A25A2186F00A78547 /* ModulesRoute.swift */,
 			);
 			path = MathQuestionEngine;
 			sourceTree = "<group>";
@@ -259,6 +258,23 @@
 				661387FB25A2132000A78547 /* CalculationsModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		666BB8B625A72B2300C745EC /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				6613884525A2185000A78547 /* AppRoute.swift */,
+				6613884A25A2186F00A78547 /* ModulesRoute.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+		666BB8B725A72B7900C745EC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6613884025A2178D00A78547 /* CommonDesignable.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		6681224C25A498B20015CD8F /* equationsCell */ = {

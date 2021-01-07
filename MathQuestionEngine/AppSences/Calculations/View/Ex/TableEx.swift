@@ -28,7 +28,7 @@ extension CalculationsViewController: UITableViewDelegate , UITableViewDataSourc
         
         
         if tableView == resultTableView {
-            cell.textLabel?.text =  " result Q(\(indexPath.row)) ?? " + results[indexPath.row]
+            cell.textLabel?.text =   results[indexPath.row]
         }
         else {
             cell.textLabel?.text = equations[indexPath.row]
