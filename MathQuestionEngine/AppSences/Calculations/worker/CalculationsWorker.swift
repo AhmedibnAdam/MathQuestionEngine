@@ -75,6 +75,6 @@ class CalculationsWorker: ICalculationsWorker {
         if (tempOperandsArray.count >= 2) {
             result = evaluateExpression(operators: tempOperatorsArray, operands: tempOperandsArray, time: time)
         }
-        return result
+        return   result
     }
 }

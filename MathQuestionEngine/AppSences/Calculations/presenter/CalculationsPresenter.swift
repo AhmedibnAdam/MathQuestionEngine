@@ -11,7 +11,7 @@
 import UIKit
 
 protocol ICalculationsPresenter: class {
-    func showResult(result: Float)
+    func showResult(result: Float, eq: String)
 }
 
 class CalculationsPresenter: ICalculationsPresenter {
@@ -21,8 +21,8 @@ class CalculationsPresenter: ICalculationsPresenter {
 	init(view: ICalculationsViewController?) {
 		self.view = view
 	}
-    func showResult(result: Float) {
-        view?.showResult(result: result)
+    func showResult(result: Float, eq: String) {
+        view?.showResult(result: result, eq: eq)
     }
     
 }

@@ -12,7 +12,7 @@ import UIKit
 
 protocol ICalculationsViewController: class {
     var router: ICalculationsRouter? { get set }
-    func showResult(result: Float)
+    func showResult(result: Float,eq: String )
 }
 
 class CalculationsViewController: UIViewController {
@@ -123,10 +123,11 @@ class CalculationsViewController: UIViewController {
         operands.append(currentOperand)
         fullEquation.append(currentOperand)
         equations.append(fullEquation)
-        fullEquation = ""
+       
         
 
         interactor?.calculateOperation(operands: operands , operators: operators, fullEquation: fullEquation, time: selectedTime)
+        fullEquation = ""
         resetData()
         reloadTable()
     }
@@ -181,19 +182,20 @@ class CalculationsViewController: UIViewController {
 }
 
 extension CalculationsViewController: ICalculationsViewController {
-    func showResult(result: Float) {
+    func showResult(result: Float , eq: String) {
         print(result)
+        let res = eq + " = " + String(Int(result))
         if (result.isInfinite || result.isNaN) {
             handleError(result: result)
         } else {
             if (floor(result) == result) {
-                resultDisplayField.text = String(Int(result))
+                resultDisplayField.text = res
             } else {
-                resultDisplayField.text = String(result)
+                resultDisplayField.text = res
             }
             self.operands.removeAll()
-            self.operands.append(String(result))
-            results.append(String(result))
+            self.operands.append(res)
+            results.append(res)
             reloadTable()
             if (operators.count > 1) {
                 operators.removeSubrange(Range(0...(operators.count - 2)))

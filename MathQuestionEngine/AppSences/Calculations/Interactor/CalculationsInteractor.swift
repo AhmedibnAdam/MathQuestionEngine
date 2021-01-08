@@ -32,7 +32,7 @@ class CalculationsInteractor: ICalculationsInteractor {
         let when = DispatchTime.now() + time
         DispatchQueue.main.asyncAfter(deadline: when) { [self] in
             if let result : Float =  worker?.evaluateExpression(operators: operators, operands: operands, time: time)  {
-                presenter?.showResult(result: result)
+                presenter?.showResult(result: result , eq: fullEquation)
             }
         }
     }
