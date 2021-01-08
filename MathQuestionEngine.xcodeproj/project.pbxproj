@@ -24,6 +24,14 @@
 		6613884625A2185000A78547 /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6613884525A2185000A78547 /* AppRoute.swift */; };
 		6613884B25A2186F00A78547 /* ModulesRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6613884A25A2186F00A78547 /* ModulesRoute.swift */; };
 		666BB85C25A6070C00C745EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 666BB85B25A6070C00C745EC /* LaunchScreen.storyboard */; };
+		666BB8EC25A89F7300C745EC /* LocationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BB8E425A89F7300C745EC /* LocationConfiguration.swift */; };
+		666BB8ED25A89F7300C745EC /* LocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BB8E525A89F7300C745EC /* LocationPresenter.swift */; };
+		666BB8EE25A89F7300C745EC /* LocationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BB8E625A89F7300C745EC /* LocationWorker.swift */; };
+		666BB8EF25A89F7300C745EC /* LocationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BB8E725A89F7300C745EC /* LocationRouter.swift */; };
+		666BB8F025A89F7300C745EC /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BB8E825A89F7300C745EC /* LocationViewController.swift */; };
+		666BB8F125A89F7300C745EC /* LocationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BB8E925A89F7300C745EC /* LocationInteractor.swift */; };
+		666BB8F225A89F7300C745EC /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BB8EA25A89F7300C745EC /* LocationModel.swift */; };
+		666BB8F325A89F7300C745EC /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 666BB8EB25A89F7300C745EC /* LocationViewController.xib */; };
 		6681224125A3388D0015CD8F /* EqautonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6681223F25A3388D0015CD8F /* EqautonsTableViewCell.swift */; };
 		6681224225A3388D0015CD8F /* EqautonsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6681224025A3388D0015CD8F /* EqautonsTableViewCell.xib */; };
 		6681225125A4990E0015CD8F /* TableEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6681225025A4990E0015CD8F /* TableEx.swift */; };
@@ -71,6 +79,14 @@
 		6613884525A2185000A78547 /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
 		6613884A25A2186F00A78547 /* ModulesRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesRoute.swift; sourceTree = "<group>"; };
 		666BB85B25A6070C00C745EC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		666BB8E425A89F7300C745EC /* LocationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationConfiguration.swift; sourceTree = "<group>"; };
+		666BB8E525A89F7300C745EC /* LocationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPresenter.swift; sourceTree = "<group>"; };
+		666BB8E625A89F7300C745EC /* LocationWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationWorker.swift; sourceTree = "<group>"; };
+		666BB8E725A89F7300C745EC /* LocationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRouter.swift; sourceTree = "<group>"; };
+		666BB8E825A89F7300C745EC /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		666BB8E925A89F7300C745EC /* LocationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInteractor.swift; sourceTree = "<group>"; };
+		666BB8EA25A89F7300C745EC /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		666BB8EB25A89F7300C745EC /* LocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
 		6681223F25A3388D0015CD8F /* EqautonsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqautonsTableViewCell.swift; sourceTree = "<group>"; };
 		6681224025A3388D0015CD8F /* EqautonsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EqautonsTableViewCell.xib; sourceTree = "<group>"; };
 		6681225025A4990E0015CD8F /* TableEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableEx.swift; sourceTree = "<group>"; };
@@ -183,6 +199,7 @@
 			children = (
 				661387E925A212DD00A78547 /* Launch */,
 				6613880825A2132E00A78547 /* Calculations */,
+				666BB8E125A89F3B00C745EC /* Location */,
 			);
 			path = AppSences;
 			sourceTree = "<group>";
@@ -275,6 +292,77 @@
 				6613884025A2178D00A78547 /* CommonDesignable.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		666BB8E125A89F3B00C745EC /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				666BB90025A8AB9500C745EC /* configuration */,
+				666BB90125A8ABAE00C745EC /* presenter */,
+				666BB90225A8ABC000C745EC /* worker */,
+				666BB90625A8ABC800C745EC /* router */,
+				666BB90A25A8ABD900C745EC /* view */,
+				666BB90B25A8ABEB00C745EC /* interactor */,
+				666BB90F25A8ABF300C745EC /* model */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		666BB90025A8AB9500C745EC /* configuration */ = {
+			isa = PBXGroup;
+			children = (
+				666BB8E425A89F7300C745EC /* LocationConfiguration.swift */,
+			);
+			path = configuration;
+			sourceTree = "<group>";
+		};
+		666BB90125A8ABAE00C745EC /* presenter */ = {
+			isa = PBXGroup;
+			children = (
+				666BB8E525A89F7300C745EC /* LocationPresenter.swift */,
+			);
+			path = presenter;
+			sourceTree = "<group>";
+		};
+		666BB90225A8ABC000C745EC /* worker */ = {
+			isa = PBXGroup;
+			children = (
+				666BB8E625A89F7300C745EC /* LocationWorker.swift */,
+			);
+			path = worker;
+			sourceTree = "<group>";
+		};
+		666BB90625A8ABC800C745EC /* router */ = {
+			isa = PBXGroup;
+			children = (
+				666BB8E725A89F7300C745EC /* LocationRouter.swift */,
+			);
+			path = router;
+			sourceTree = "<group>";
+		};
+		666BB90A25A8ABD900C745EC /* view */ = {
+			isa = PBXGroup;
+			children = (
+				666BB8E825A89F7300C745EC /* LocationViewController.swift */,
+				666BB8EB25A89F7300C745EC /* LocationViewController.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		666BB90B25A8ABEB00C745EC /* interactor */ = {
+			isa = PBXGroup;
+			children = (
+				666BB8E925A89F7300C745EC /* LocationInteractor.swift */,
+			);
+			path = interactor;
+			sourceTree = "<group>";
+		};
+		666BB90F25A8ABF300C745EC /* model */ = {
+			isa = PBXGroup;
+			children = (
+				666BB8EA25A89F7300C745EC /* LocationModel.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		6681224C25A498B20015CD8F /* equationsCell */ = {
@@ -401,6 +489,7 @@
 				6613880425A2132100A78547 /* CalculationsViewController.xib in Resources */,
 				6681224225A3388D0015CD8F /* EqautonsTableViewCell.xib in Resources */,
 				661387BC25A2126E00A78547 /* Assets.xcassets in Resources */,
+				666BB8F325A89F7300C745EC /* LocationViewController.xib in Resources */,
 				666BB85C25A6070C00C745EC /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,14 +518,21 @@
 				6613884B25A2186F00A78547 /* ModulesRoute.swift in Sources */,
 				6613880125A2132000A78547 /* CalculationsViewController.swift in Sources */,
 				6681225125A4990E0015CD8F /* TableEx.swift in Sources */,
+				666BB8EF25A89F7300C745EC /* LocationRouter.swift in Sources */,
+				666BB8ED25A89F7300C745EC /* LocationPresenter.swift in Sources */,
 				6613884125A2178D00A78547 /* CommonDesignable.swift in Sources */,
 				6681225925A4994A0015CD8F /* PickerEx.swift in Sources */,
 				6613880325A2132100A78547 /* CalculationsModel.swift in Sources */,
 				661387FD25A2132000A78547 /* CalculationsConfiguration.swift in Sources */,
+				666BB8EC25A89F7300C745EC /* LocationConfiguration.swift in Sources */,
 				6681224125A3388D0015CD8F /* EqautonsTableViewCell.swift in Sources */,
+				666BB8F125A89F7300C745EC /* LocationInteractor.swift in Sources */,
 				661387FF25A2132000A78547 /* CalculationsWorker.swift in Sources */,
 				6613884625A2185000A78547 /* AppRoute.swift in Sources */,
+				666BB8EE25A89F7300C745EC /* LocationWorker.swift in Sources */,
 				6613880025A2132000A78547 /* CalculationsRouter.swift in Sources */,
+				666BB8F225A89F7300C745EC /* LocationModel.swift in Sources */,
+				666BB8F025A89F7300C745EC /* LocationViewController.swift in Sources */,
 				6613880225A2132000A78547 /* CalculationsInteractor.swift in Sources */,
 				661387FE25A2132000A78547 /* CalculationsPresenter.swift in Sources */,
 				661387B325A2126900A78547 /* AppDelegate.swift in Sources */,

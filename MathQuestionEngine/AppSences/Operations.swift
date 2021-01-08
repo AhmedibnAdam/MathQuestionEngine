@@ -1,24 +1,33 @@
 //
-//  CalculationsWorker.swift
+//  Operations.swift
 //  MathQuestionEngine
 //
-//  Created by Adam on 07/01/2021.
-//  Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
-//  Modify By:  * Ahmed Adam
-//              * ibn.abuadam@gmail.com
-//              * https://github.com/AhmedibnAdam
+//  Created by Adam on 08/01/2021.
+//
 
 import Foundation
-
-protocol ICalculationsWorker: class {
-    func evaluateStatement(selectedOperator: Int, firstOperand: Float, secondOperand: Float) -> Float
-    func checkPrecedenceOrder(_ tempOperatorsArray: [String], _ operatorIndexInArray: inout Int?) -> Int
-    func evaluateExpression(operators: [String], operands: [String], time: Double)-> Float 
-}
-
-class CalculationsWorker: ICalculationsWorker {
+struct Operations {
     
-    var currentOperator : Int!
+    
+    static func getCalculationResult(operators: [String], operands: [String], time: Double) -> [Operation] {
+        
+        
+        var operationQueue: OperationQueue = {
+
+            let operation = OperationQueue()
+            operation.qualityOfService = .userInitiated
+            operation.maxConcurrentOperationCount = 1
+
+            return operation
+        }()
+
+        operationQueue.addOperation {
+
+        }
+ 
+        return [operationQueue]
+    }
+    
     func evaluateStatement(selectedOperator: Int, firstOperand: Float, secondOperand: Float) -> Float {
         switch selectedOperator {
         case 4:
@@ -54,7 +63,8 @@ class CalculationsWorker: ICalculationsWorker {
         return -1
     }
     
-    func evaluateExpression(operators: [String], operands: [String], time: Double)-> Float  {
+    func evaluateExpression(operators: [String], operands: [String], time: Double)  {
+        var currentOperator : Int!
         var firstOperand : Float
         var secondOperand : Float
         var result : Float
@@ -66,15 +76,17 @@ class CalculationsWorker: ICalculationsWorker {
         secondOperand = Float(tempOperandsArray[operatorIndexInArray + 1])!
         result = (evaluateStatement(selectedOperator: currentOperator, firstOperand: firstOperand, secondOperand: secondOperand))
         if (result.isInfinite || result.isNaN) {
-            return result
+//            return result
         }
         if (tempOperandsArray.count >= 2) {
             tempOperatorsArray.remove(at: operatorIndexInArray)
             tempOperandsArray.replaceSubrange(Range(operatorIndexInArray...operatorIndexInArray.advanced(by: 1)), with: [String(result)])
         }
         if (tempOperandsArray.count >= 2) {
-            result = evaluateExpression(operators: tempOperatorsArray, operands: tempOperandsArray, time: time)
+          //  result =
+                evaluateExpression(operators: tempOperatorsArray, operands: tempOperandsArray, time: time)
         }
-        return result
+//        return result
     }
+    
 }

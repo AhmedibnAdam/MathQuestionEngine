@@ -22,7 +22,7 @@ extension CalculationsViewController: UIPickerViewDelegate, UIPickerViewDataSour
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.textBox.text = " Result will be after " + self.list[row] + " seconds ▾"
+        self.textBox.text = " Delay " + self.list[row] + " seconds ▾"
         selectedTime = Double(self.list[row])!
         self.dropDown.isHidden = true
     }
@@ -31,8 +31,6 @@ extension CalculationsViewController: UIPickerViewDelegate, UIPickerViewDataSour
         
         if textField == self.textBox {
             self.dropDown.isHidden = false
-            //if you don't want the users to se the keyboard type:
-            
             textField.endEditing(true)
         }
     }

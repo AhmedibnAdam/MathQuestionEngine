@@ -14,12 +14,23 @@ extension CalculationsViewController: UITableViewDelegate , UITableViewDataSourc
         tableView.register(cell, forCellReuseIdentifier: "EqautonsTableViewCell")
         resultTableView.register(cell, forCellReuseIdentifier: "EqautonsTableViewCell")
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
         if tableView == resultTableView {
-           return results.count
+            return "Result"
         }
         else {
-        return equations.count
+            return "Equations"
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == resultTableView {
+            return results.count
+        }
+        else {
+            return equations.count
         }
     }
     
@@ -28,12 +39,12 @@ extension CalculationsViewController: UITableViewDelegate , UITableViewDataSourc
         
         
         if tableView == resultTableView {
-            cell.textLabel?.text =   results[indexPath.row]
+            cell.textLabel?.text =  results[indexPath.row]
         }
         else {
             cell.textLabel?.text = equations[indexPath.row]
         }
-       
+        
         return cell
     }
 }

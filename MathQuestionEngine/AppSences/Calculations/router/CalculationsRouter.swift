@@ -11,7 +11,7 @@
 import UIKit
 
 protocol ICalculationsRouter: class {
-	// do someting...
+    func showLocation()
 }
 
 class CalculationsRouter: ICalculationsRouter {	
@@ -20,4 +20,7 @@ class CalculationsRouter: ICalculationsRouter {
 	init(view: CalculationsViewController?) {
 		self.view = view
 	}
+    func showLocation() {
+        view?.navigate(type: .modal, module: ModulesRoute.location, completion: nil)
+    }
 }

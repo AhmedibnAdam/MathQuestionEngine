@@ -14,6 +14,7 @@ import UIKit
 enum ModulesRoute: IRouter {
 
     case calculations
+    case location
 }
 
 extension ModulesRoute {
@@ -22,7 +23,8 @@ extension ModulesRoute {
          switch self {
          case .calculations:
             return CalculationsConfiguration.setup()
-    
+         case .location:
+            return LocationConfiguration.setup()
          }
          
         

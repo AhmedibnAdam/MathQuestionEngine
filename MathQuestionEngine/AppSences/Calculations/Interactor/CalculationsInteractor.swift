@@ -12,9 +12,7 @@ import UIKit
 
 protocol ICalculationsInteractor: class {
     var parameters: [String: String]? { get set }
-    
-    func evaluateExpression(operators: [String], operands: [String], time: Double) -> Float
-    func getOperatorPrecedence(paramOperator: String) -> Int
+    func calculateOperation(operands: [String] , operators:[String] , fullEquation: String, time: Double)
 }
 
 class CalculationsInteractor: ICalculationsInteractor {
@@ -27,53 +25,16 @@ class CalculationsInteractor: ICalculationsInteractor {
         self.presenter = presenter
         self.worker = worker
     }
-    
-    func getOperatorPrecedence(paramOperator: String) -> Int {
-        switch paramOperator {
-        case "-":
-            return 1
-        case "+":
-            return 2
-        case "x":
-            return 3
-        case "/":
-            return 4
-        default:
-            print(" unknown operator  " )
-            return -1
+
+    //MARK:- background scheduled tasks.
+     func calculateOperation(operands: [String] , operators:[String] , fullEquation: String, time: Double) {
+
+        let when = DispatchTime.now() + time
+        DispatchQueue.main.asyncAfter(deadline: when) { [self] in
+            if let result : Float =  worker?.evaluateExpression(operators: operators, operands: operands, time: time)  {
+                presenter?.showResult(result: result)
+            }
         }
-    }
-    
-    func evaluateExpression(operators: [String], operands: [String], time: Double) -> Float {
-        var firstOperand : Float
-        var secondOperand : Float
-        var result : Float
-        var operatorIndexInArray : Int!
-        var tempOperatorsArray = operators
-        var tempOperandsArray = operands
-        
-        checkPrecedenceOrder(tempOperatorsArray, &operatorIndexInArray)
-        firstOperand = Float(tempOperandsArray[operatorIndexInArray])!
-        secondOperand = Float(tempOperandsArray[operatorIndexInArray + 1])!
-        
-        result = (worker?.evaluateStatement(selectedOperator: currentOperator, firstOperand: firstOperand, secondOperand: secondOperand))!
-        if (result.isInfinite || result.isNaN) {
-            return result
-        }
-        if (tempOperandsArray.count >= 2) {
-            tempOperatorsArray.remove(at: operatorIndexInArray)
-            tempOperandsArray.replaceSubrange(Range(operatorIndexInArray...operatorIndexInArray.advanced(by: 1)), with: [String(result)])
-        }
-        
-        if (tempOperandsArray.count >= 2) {
-            result = evaluateExpression(operators: tempOperatorsArray, operands: tempOperandsArray, time: time)
-        }
-        return result
-    }
-    
-    func checkPrecedenceOrder(_ tempOperatorsArray: [String], _ operatorIndexInArray: inout Int?) {
-        
-        currentOperator =  worker?.checkPrecedenceOrder(tempOperatorsArray, &operatorIndexInArray)
     }
 }
 

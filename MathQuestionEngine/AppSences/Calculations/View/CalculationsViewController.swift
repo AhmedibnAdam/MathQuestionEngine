@@ -33,8 +33,6 @@ class CalculationsViewController: UIViewController {
     var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var list = ["5", "10", "15" , "20" ,"25", "30"]
     var selectedTime = 0.0
-    var selectedTimeArr = [Double]()
-    var responseArrange = [Int]()
     var isInInitialState = true
     var wasLastButtonClickedAnOperator = false
     var currentOperator : Int!
@@ -48,7 +46,6 @@ class CalculationsViewController: UIViewController {
         super.viewDidLoad()
         registerTableCell()
     }
-    
     //MARK:- Actions
     @IBAction func onNumberClicked(_ sender: UIButton) {
         
@@ -98,7 +95,7 @@ class CalculationsViewController: UIViewController {
                 fullEquation.append(currentOperand)
                 if (operands.count > 1) {
                     let isCurrentOperatorOfHigherPrecedence : Bool =
-                        ((interactor?.getOperatorPrecedence(paramOperator: sender.currentTitle!))! > (interactor?.getOperatorPrecedence(paramOperator: operators.last!))!)
+                        ((getOperatorPrecedence(paramOperator: sender.currentTitle!)) > (getOperatorPrecedence(paramOperator: operators.last!)))
                     if (!isCurrentOperatorOfHigherPrecedence) {
                         caluclatNotHigherPrec(operands: operands , operators: operators, fullEquation: fullEquation)
                     }
@@ -112,70 +109,26 @@ class CalculationsViewController: UIViewController {
     }
     
     func caluclatNotHigherPrec(operands: [String] , operators:[String] , fullEquation: String){
+        interactor?.calculateOperation(operands: operands , operators: operators, fullEquation: fullEquation, time: selectedTime)
         
-        var operators = operators
-        guard let result : Float = interactor?.evaluateExpression(operators: operators, operands: operands, time: selectedTime) else {
-            return
-        }
-        
-        if (result.isInfinite || result.isNaN) {
-            handleError(result: result)
-        } else {
-            if (floor(result) == result) {
-                //                resultDisplayField.text = String(Int(result))
-            } else {
-                //                resultDisplayField.text = String(result)
-            }
-        }
     }
     
-    
+    @IBAction func showLocation(_ sender: UIButton) {
+        router?.showLocation()
+    }
     @IBAction func onEqualsButtonClicked(_ sender: UIButton) {
         if (operators.isEmpty) {
             return
         }
         operands.append(currentOperand)
-        
         fullEquation.append(currentOperand)
         equations.append(fullEquation)
         fullEquation = ""
-        calculateOperation(operands: operands , operators: operators, fullEquation: fullEquation)
+        
+
+        interactor?.calculateOperation(operands: operands , operators: operators, fullEquation: fullEquation, time: selectedTime)
         resetData()
         reloadTable()
-    }
-    
-    
-    fileprivate func calculateOperation(operands: [String] , operators:[String] , fullEquation: String) {
-        //MARK:- background scheduled tasks.
-        var operators = operators
-        let when = DispatchTime.now() + selectedTime
-        DispatchQueue.main.asyncAfter(deadline: when) { [self] in
-            if let result : Float = interactor?.evaluateExpression(operators: operators, operands: operands, time: selectedTime)  {
-                
-                if (result.isInfinite || result.isNaN) {
-                    handleError(result: result)
-                } else {
-                    if (floor(result) == result) {
-                        resultDisplayField.text = String(Int(result))
-                    } else {
-                        resultDisplayField.text = String(result)
-                    }
-                    self.operands.removeAll()
-                    self.operands.append(String(result))
-                    results.append(String(result))
-                    reloadTable()
-                    if (operators.count > 1) {
-                        operators.removeSubrange(Range(0...(operators.count - 2)))
-                    }
-                }
-                DispatchQueue.main.async { [self] in
-                    reloadTable()
-                }
-                
-            }
-            wasLastButtonClickedAnOperator = true
-            resetData ()
-        }
     }
     
     @IBAction func onResetButtonClicked(_ sender: UIButton) {
@@ -183,7 +136,22 @@ class CalculationsViewController: UIViewController {
         resetData()
     }
     
-    
+    func getOperatorPrecedence(paramOperator: String) -> Int {
+        switch paramOperator {
+        case "-":
+            return 1
+        case "+":
+            return 2
+        case "x":
+            return 3
+        case "/":
+            return 4
+        default:
+            print(" unknown operator  " )
+            return -1
+        }
+    }
+
     func handleError(result: Float) {
         if (result.isInfinite) {
             resultDisplayField.text = "Infinity"
@@ -213,8 +181,28 @@ class CalculationsViewController: UIViewController {
 }
 
 extension CalculationsViewController: ICalculationsViewController {
-    
     func showResult(result: Float) {
         print(result)
+        if (result.isInfinite || result.isNaN) {
+            handleError(result: result)
+        } else {
+            if (floor(result) == result) {
+                resultDisplayField.text = String(Int(result))
+            } else {
+                resultDisplayField.text = String(result)
+            }
+            self.operands.removeAll()
+            self.operands.append(String(result))
+            results.append(String(result))
+            reloadTable()
+            if (operators.count > 1) {
+                operators.removeSubrange(Range(0...(operators.count - 2)))
+            }
+        }
+        wasLastButtonClickedAnOperator = true
+        resetData ()
+        DispatchQueue.main.async { [self] in
+            reloadTable()
+        }
     }
 }
