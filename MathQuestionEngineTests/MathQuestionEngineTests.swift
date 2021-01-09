@@ -8,26 +8,37 @@
 import XCTest
 @testable import MathQuestionEngine
 
-class MathQuestionEngineTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+class MathQuestionTest: XCTestCase {
+    
+
+    override func setUp() {
+        super.setUp()
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    override func tearDown() {
+        super.tearDown()
     }
+    
+    func testExample() {
+        //MARK: - Given
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        var expectedResponse: Float!
+        let exception = self.expectation(description: "Calculation wrong !")
+
+        //MARK: - When
+        let worker: ICalculationsWorker? = CalculationsWorker()
+        let actual_responce = worker?.evaluateExpression(operators: ["+", "x"], operands: ["5","3","3"], time: 5)
+
+            expectedResponse = actual_responce
+            exception.fulfill()
+
+
+        //MARK: - Then
+        waitForExpectations(timeout: 2, handler: nil)
+        XCTAssertNotNil(expectedResponse)
+        XCTAssertTrue(expectedResponse == 14)
+//        XCTAssertEqual(expectedResponse , 5.0)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
+    
 }
